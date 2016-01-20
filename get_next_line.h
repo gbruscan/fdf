@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbruscan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/12 15:55:20 by gbruscan          #+#    #+#             */
-/*   Updated: 2016/01/20 18:04:28 by gbruscan         ###   ########.fr       */
+/*   Created: 2016/01/12 11:15:44 by gbruscan          #+#    #+#             */
+/*   Updated: 2016/01/12 13:41:46 by gbruscan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int		main(void)
-{
-	void	*mlx;
-	void	*win;
-	
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 400, 400, "mlx 42");
-	mlx_loop(mlx);
-	return (0);
-}
+# include "libft/libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+
+# define BUFF_SIZE 1200
+
+int		ft_create_buff(char *buff, int j);
+int		ft_get_new_line(char *buff, char **line, int j);
+int		ft_buff_cpy(char *buff, char **line);
+int		ft_line_status(char *buff, char **line);
+int		get_next_line(int const fd, char **line);
+
+#endif

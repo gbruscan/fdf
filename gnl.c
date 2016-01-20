@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   gnl.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gbruscan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/12 15:55:20 by gbruscan          #+#    #+#             */
-/*   Updated: 2016/01/12 15:59:40 by gbruscan         ###   ########.fr       */
+/*   Created: 2016/01/13 17:23:07 by gbruscan          #+#    #+#             */
+/*   Updated: 2016/01/13 17:26:53 by gbruscan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include "libft/libft.h"
 
-int		main(int argc, char **argv)
+int		main(void)
 {
-	void	*mlx;
-	void	*win;
+	int		fd;
+	char	**line;
 
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 400, 400, "mlx 42");
-	mlx_loop(mlx);
+	line = (char **)malloc(sizeof(char *) * 2);
+	if (line == NULL)
+		printf("tamere");
+	fd = open("42.fdf", O_RDONLY);
+	get_next_line(fd, line);
+	close(fd);
+	printf("%s", line[0]);
 	return (0);
 }
