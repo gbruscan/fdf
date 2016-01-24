@@ -20,9 +20,9 @@ FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
 
 LIBDIR = libft/
 
-SRCS =	main.c \
-		get_next_line.c
-
+SRCS =		main.c \
+		get_next_line.c \
+		parse.c
 OBJ =	$(SRCS:.c=.o)
 
 all:	$(NAME)
