@@ -43,7 +43,8 @@ int 	main(int argc, char **argv)
 		ft_putendl("error");	
 		return (0);		
 	}
-	fd = open("argv[1]", O_RDONLY);
-	ft_check_map(fd);
+	fd = open(argv[1], O_RDONLY);
+	if (ft_check_map(fd))
+		ft_putendl("map ok");
 	return (0);
 }

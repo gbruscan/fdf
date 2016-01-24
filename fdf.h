@@ -9,5 +9,4 @@
 int		ft_check_line(char *line);
 int		ft_check_map(int fd);
 
-
 #endif
