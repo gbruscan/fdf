@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include "libft/libft.h"
-#include "get_next_line.h"
+#include "fdf.h"
 
 int			ft_getnbr(char *s)
 {

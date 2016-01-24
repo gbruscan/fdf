@@ -10,10 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
+#include "fdf.h"
 
 /*int			ft_getnbr(char *s)
 {
@@ -47,6 +44,6 @@ int 	main(int argc, char **argv)
 		return (0);		
 	}
 	fd = open("argv[1]", O_RDONLY);
-	get_next_line(fd, argv);
+	ft_check_map(fd);
 	return (0);
 }
