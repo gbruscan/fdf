@@ -18,7 +18,6 @@ int		ft_check_line(char *line)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		printf("%c", line[i]);
 		if (line[i] == ',')
 		{
 			j = ft_color_checker(line, i + 1);
@@ -42,7 +41,6 @@ int		ft_check_map(int fd)
 	while (get_next_line(fd, &line))
 	{
 		z = ft_check_line(line);
-		ft_putendl(line);
 		if (z == 0)
 			{
 				ft_putendl("invalid map");
