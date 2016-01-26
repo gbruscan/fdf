@@ -44,6 +44,11 @@ int 	main(int argc, char **argv)
 		return (0);		
 	}
 	fd = open(argv[1], O_RDONLY);
+	if ((fd = open(argv[1], O_RDONLY)) < 0)
+		{
+			ft_putendl("error");
+			return (0);
+		}
 	if (ft_check_map(fd))
 		ft_putendl("map ok");
 	return (0);
