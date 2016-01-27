@@ -23,7 +23,8 @@ LIBDIR = libft/
 SRCS =		main.c \
 		get_next_line.c \
 		check.c \
-		color_check.c
+		color_check.c \
+		map.c
 OBJ =	$(SRCS:.c=.o)
 
 all:	$(NAME)

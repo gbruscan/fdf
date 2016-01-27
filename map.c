@@ -1,19 +1,28 @@
 #include "fdf.h"
 
-char **ft_fill_map(int fd);
+int	ft_map(int fd)
 {
-	char **map;
-	char *line;
-	int i;
+	int		m;
+	char	*line;
+
+	m = 0;
+	line = NULL;
+	while (get_next_line(fd, &line))
+		m++;
+	if (ft_strcmp(line, "") != 0)
+		m += 1;
+	printf("%d\n", m);
+	return (m);
+}
+
+
+
+int **ft_fill_map(int fd)
+{
+	int 	**map;
+	int 	m;
 
 	map = NULL;
-	line = NULL;
-	i = 0;
-	while (get_next_line(fd, &line))
-	{
-		map[i] = ft_strdup(line)
-		ft_putendl(map[i]);
-		i++;
-	}
+	m = ft_map(fd);
 	return (map);
 }

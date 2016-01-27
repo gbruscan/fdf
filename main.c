@@ -27,7 +27,7 @@
 int 	main(int argc, char **argv)
 {
 	int fd;
-	char **map;
+	int **map;
 
 	if (argc != 2)
 	{	
