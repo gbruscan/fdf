@@ -20,7 +20,7 @@ FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
 
 LIBDIR = libft/
 
-SRCS =		main.c \
+SRCS =	main.c \
 		get_next_line.c \
 		check.c \
 		color_check.c \

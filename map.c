@@ -69,8 +69,6 @@ int		ft_map(int fd)
 	return (m);
 }
 
-
-
 int 	**ft_fill_map(int fd, int m)
 {
 	int 	i;

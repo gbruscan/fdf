@@ -6,6 +6,7 @@
 #include <fcntl.h>
 #include <mlx.h>
 
+int 	ft_error(void);
 int		ft_check_line(char *line);
 int		ft_check_map(int fd);
 int		ft_color_checker(char *line, int i);

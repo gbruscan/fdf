@@ -24,6 +24,12 @@
 }
 */
 
+int 	ft_error(void)
+{
+	ft_putendl("error")
+	return (0);
+}
+
 int 	main(int argc, char **argv)
 {
 	int 	fd;
@@ -31,15 +37,9 @@ int 	main(int argc, char **argv)
 	int 	**map;
 
 	if (argc != 2)
-	{	
-		ft_putendl("error");	
-		return (0);		
-	}
+		return (ft_error);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		{
-			ft_putendl("error");
-			return (0);
-		}
+		return (ft_error);
 	if (ft_check_map(fd) == 0)
 		return (0);
 	close (fd);
