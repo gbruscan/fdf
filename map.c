@@ -9,12 +9,14 @@ int 	ft_how_much_int(char *line)
 	j = 0;
 	while (line[i] != '\0')
 	{
-		if (line[i] >= '0' && line[i] <= '9')
+		if ((line[i] >= '0' && line[i] <= '9') || (line[i] == '-'))
 		{
 			j += 1;
-			while (line[i] >= '0' && line[i] <= '9')
+			while ((line[i] == '-') || (line[i] >= '0' && line[i] <= '9'))
 				i++;
 		}
+		if (line[i] == ',')
+			i += 9;
 		while (line[i] == ' ')
 			i++;
 	}
@@ -44,7 +46,9 @@ int		*ft_strdup_atoi(char *line)
 	while (line && line[j] != '\0')
 	{
 		map[i] = ft_atoi(line + j);
-		printf("%d\n", map[i]);
+		ft_putnbr(map[i]);
+		ft_putchar(' ');
+		ft_putchar(' ');
 		i += 1;
 		j = ft_increase_j(line, j);
 	}
@@ -78,11 +82,11 @@ int 	**ft_fill_map(int fd, int m)
 	map = (int **)malloc(sizeof(int *) * m);
 	if (!map)
 		return (0);
-//	while (get_next_line(fd, &line))
-//	{
-	get_next_line(fd, &line);
+	while (get_next_line(fd, &line))
+	{
 		map[i] = ft_strdup_atoi(line); 
-//		i++;
-//	}
+		ft_putchar('\n');
+		i++;
+	}
 	return (map);
 }
