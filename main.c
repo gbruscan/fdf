@@ -26,8 +26,9 @@
 
 int 	main(int argc, char **argv)
 {
-	int fd;
-	int **map;
+	int 	fd;
+	int 	m;
+	int 	**map;
 
 	if (argc != 2)
 	{	
@@ -43,6 +44,9 @@ int 	main(int argc, char **argv)
 		return (0);
 	close (fd);
 	fd = open(argv[1], O_RDONLY);
-	map = ft_fill_map(fd);
+	m = ft_map(fd);
+	close (fd);
+	fd = open(argv[1], O_RDONLY);
+	map = ft_fill_map(fd, m);
 	return (0);
 }
