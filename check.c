@@ -1,15 +1,5 @@
 #include "fdf.h"
 
-int			ft_getnbr(char *s)
-{
-	int		res;
-
-	res = 0;
-	while ((*s >= '0') && (*s <= '9'))
-		res = (res * 10) + *s++ - '0';
-	return (res);
-}
-
 int		ft_check_line(char *line)
 {
 	int		i;

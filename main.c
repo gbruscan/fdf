@@ -12,17 +12,7 @@
 
 #include "fdf.h"
 
-/*int			ft_getnbr(char *s)
-{
-	int		res;
-
-	res = 0;
-	while ((*s >= '0') && (*s <= '9'))
-		res = (res * 10) + *s++ - '0';
-	return (res);
-}
-
-int		main(void)
+/*int		main(void)
 {
 	void	*mlx;
 	void	*win;
@@ -37,19 +27,22 @@ int		main(void)
 int 	main(int argc, char **argv)
 {
 	int fd;
+	char **map;
 
 	if (argc != 2)
 	{	
 		ft_putendl("error");	
 		return (0);		
 	}
-	fd = open(argv[1], O_RDONLY);
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
 		{
 			ft_putendl("error");
 			return (0);
 		}
-	if (ft_check_map(fd))
-		ft_putendl("map ok");
+	if (ft_check_map(fd) == 0)
+		return (0);
+	close (fd);
+	fd = open(argv[1], O_RDONLY);
+	map = ft_fill_map(fd);
 	return (0);
 }
