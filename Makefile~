@@ -24,7 +24,6 @@ SRCS =	main.c \
 		get_next_line.c \
 		check.c \
 		color_check.c \
-		window.c \
 		map.c
 OBJ =	$(SRCS:.c=.o)
 

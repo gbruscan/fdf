@@ -46,9 +46,6 @@ int		*ft_strdup_atoi(char *line)
 	while (line && line[j] != '\0')
 	{
 		map[i] = ft_atoi(line + j);
-		ft_putnbr(map[i]);
-		ft_putchar(' ');
-		ft_putchar(' ');
 		i += 1;
 		j = ft_increase_j(line, j);
 	}
@@ -83,7 +80,6 @@ int 	**ft_fill_map(int fd, int m)
 	while (get_next_line(fd, &line))
 	{
 		map[i] = ft_strdup_atoi(line); 
-		ft_putchar('\n');
 		i++;
 	}
 	return (map);

@@ -12,21 +12,9 @@
 
 #include "fdf.h"
 
-/*int		main(void)
-{
-	void	*mlx;
-	void	*win;
-	
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, 400, 400, "mlx 42");
-	mlx_loop(mlx);
-	return (0);
-}
-*/
-
 int 	ft_error(void)
 {
-	ft_putendl("error")
+	ft_putendl("error");
 	return (0);
 }
 
@@ -37,9 +25,9 @@ int 	main(int argc, char **argv)
 	int 	**map;
 
 	if (argc != 2)
-		return (ft_error);
+		return (ft_error());
 	if ((fd = open(argv[1], O_RDONLY)) < 0)
-		return (ft_error);
+		return (ft_error());
 	if (ft_check_map(fd) == 0)
 		return (0);
 	close (fd);
@@ -48,5 +36,6 @@ int 	main(int argc, char **argv)
 	close (fd);
 	fd = open(argv[1], O_RDONLY);
 	map = ft_fill_map(fd, m);
+	ft_window();
 	return (0);
 }
