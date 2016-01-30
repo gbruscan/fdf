@@ -36,6 +36,6 @@ int 	main(int argc, char **argv)
 	close (fd);
 	fd = open(argv[1], O_RDONLY);
 	map = ft_fill_map(fd, m);
-	ft_window();
+	ft_window(map);
 	return (0);
 }
