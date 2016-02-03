@@ -5,12 +5,15 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <mlx.h>
+# define SPACE 1000
 
 typedef struct 	s_env
 {
-	int 	x;
-	int 	y;
-	int 	**map;
+	int 		x;
+	int 		y;
+	int 		**map;
+	void 		*mlx;
+	void 		*win;
 }				t_env;
 
 int 	ft_error(void);
@@ -21,8 +24,8 @@ int		ft_ishexa(char c);
 int		ft_map(int fd);
 int		ft_increase_j(char *line, int j);
 int 	ft_how_much_int(char *line);
-int		*ft_strdup_atoi(char *line);
-int 	**ft_fill_map(int fd, int m);
-void	ft_window(int **map);
+int		*ft_strdup_atoi(char *line, int *x);
+void	ft_window(t_env map);
+t_env 	ft_fill_map(int fd, int m);
 
 #endif

@@ -32,7 +32,7 @@ int		ft_increase_j(char *line, int j)
 	return (j);
 }
 
-int		*ft_strdup_atoi(char *line)
+int		*ft_strdup_atoi(char *line, int *x)
 {
 	int		i;
 	int		j;
@@ -43,6 +43,7 @@ int		*ft_strdup_atoi(char *line)
 	map = (int *)malloc(sizeof(int) * ft_how_much_int(line));
 	if (!map)
 		return (NULL);
+	*x = ft_how_much_int(line);
 	while (line && line[j] != '\0')
 	{
 		map[i] = ft_atoi(line + j);
@@ -66,20 +67,20 @@ int		ft_map(int fd)
 	return (m);
 }
 
-int 	**ft_fill_map(int fd, int m)
+t_env	ft_fill_map(int fd, int m)
 {
 	int 	i;
-	int 	**map;
 	char 	*line;
+	t_env	map;
 
 	i = 0;
 	line = NULL;
-	map = (int **)malloc(sizeof(int *) * m);
-	if (!map)
-		return (0);
+	map.x = 0;
+	map.y = m;
+	map.map = (int **)malloc(sizeof(int *) * m);
 	while (get_next_line(fd, &line))
 	{
-		map[i] = ft_strdup_atoi(line); 
+		map.map[i] = ft_strdup_atoi(line, &map.x); 
 		i++;
 	}
 	return (map);
