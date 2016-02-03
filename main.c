@@ -12,6 +12,27 @@
 
 #include "fdf.h"
 
+void	ft_print_map(int **map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < 11)
+	{
+		while (j < 19)
+		{
+			ft_putnbr(map[i][j]);
+			ft_putstr("  ");
+			j++;
+		}
+		ft_putchar('\n');
+		j = 0;
+		i++;
+	}
+}
+
 int 	ft_error(void)
 {
 	ft_putendl("error");
@@ -22,7 +43,7 @@ int 	main(int argc, char **argv)
 {
 	int 	fd;
 	int 	m;
-	int 	**map;
+	t_env 	map;
 
 	if (argc != 2)
 		return (ft_error());
@@ -35,7 +56,8 @@ int 	main(int argc, char **argv)
 	m = ft_map(fd);
 	close (fd);
 	fd = open(argv[1], O_RDONLY);
-	map = ft_fill_map(fd, m);
-	ft_window(map);
+	map.map = ft_fill_map(fd, m);
+	ft_print_map(map.map);
+//	ft_window(map);
 	return (0);
 }

@@ -6,6 +6,13 @@
 #include <fcntl.h>
 #include <mlx.h>
 
+typedef struct 	s_env
+{
+	int 	x;
+	int 	y;
+	int 	**map;
+}				t_env;
+
 int 	ft_error(void);
 int		ft_check_line(char *line);
 int		ft_check_map(int fd);
