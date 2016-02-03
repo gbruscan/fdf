@@ -3,7 +3,7 @@
 int 	ft_get_b(int a, int c)
 {
 	int b;
-	
+
 	if (a < c)
 		b = c;
 	else
@@ -18,7 +18,7 @@ void 	ft_draw_to_next(int i, int j, t_env map, int b)
 	a = 0;
 	while (a < SPACE/b)
 	{
-		mlx_pixel_put(map.mlx, map.win, 30 + j * SPACE/b + a, 30 + i * SPACE/b, 0xFFFFFF);
+		mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b + a, BEGIN + i * SPACE/b, 0xFFFFFF);
 		a++;
 	}
 }
@@ -30,7 +30,7 @@ void 	ft_draw_to_lower(int i, int j, t_env map, int b)
 	a = 0;
 	while (a < SPACE/b)
 	{
-		mlx_pixel_put(map.mlx, map.win, 30 + j * SPACE/b, 30 + i * SPACE/b + a, 0xFFFFFF);
+		mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b, BEGIN + i * SPACE/b + a, 0xFFFFFF);
 		a++;
 	}
 }
@@ -46,7 +46,7 @@ void	ft_draw_map(t_env map, int b)
 	{
 		while (j < map.x)
 		{
-			mlx_pixel_put(map.mlx, map.win, 30 + j * SPACE/b, 30 + i * SPACE/b, 0xFFFFFF);
+			mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b, BEGIN + i * SPACE/b, 0xFFFFFF);
 			if (j + 1 < map.x)
 				ft_draw_to_next(i ,j, map, b);
 			if (i + 1 < map.y)
