@@ -10,39 +10,50 @@
 #                                                                              #
 #******************************************************************************#
 
-NAME =  fdf
+NAME =  	fdf
 
-CC =	gcc
+CC =		gcc
 
-CFLAGS = -Wall -Wextra -Werror 
+SRCS =		srcs/main.c \
+		srcs/get_next_line.c \
+		srcs/check.c \
+		srcs/color_check.c \
+		srcs/window.c \
+		srcs/map.c
 
-FRAMEWORK = -lmlx -framework OpenGL -framework AppKit
+CFLAGS =	-Wall -Wextra -Werror -g
+CFLAGS +=	-I./includes -I/usr/X11/include
 
-LIBDIR = libft/
+OBJ =		$(SRCS:.c=.o)
 
-SRCS =	main.c \
-		get_next_line.c \
-		check.c \
-		color_check.c \
-		window.c \
-		map.c
-OBJ =	$(SRCS:.c=.o)
+LIBFLAGS =	-L libft/ -lft -L minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
 
-all:	$(NAME)
+LIB =		libft.a
 
-$(NAME): $(OBJ)
-		make -C $(LIBDIR)
-		$(CC) $(CFLAGS) $(FRAMEWORK) -o $(NAME) $(OBJ) -L $(LIBDIR) -lft
+LPATH =		libft
 
-%.o:	%.c
-		$(CC) $(CFLAGS) -o $@ -c $<
+LIBINC =	-L$(LPATH) -lft -I /usr/X11/include/ -I minilibx_macos/
 
-clean:
-		rm -rf $(OBJ)
-		make -C $(LIBDIR) clean
+LIBH =		-I$(LPATH)
 
-fclean:	clean
-		rm -rf $(NAME)
-		make -C $(LIBDIR) fclean
+all :		$(NAME)
 
-re:		fclean all
+$(NAME) :	$(LPATH) $(OBJ)
+			$(CC) $(CFLAGS) $(OBJ) $(LIBINC) $(LIBFLAGS) -o $(NAME)
+
+$(LIB) :
+			make -C $(LPATH)
+
+$(LPATH) :	$(LIB)
+
+clean :
+		rm -f $(OBJ)
+
+cleanlib :
+		make clean -C $(LPATH)
+
+fcleanlib :
+		make fclean -C $(LPATH)
+
+fclean :	fcleanlib clean
+			rm -f $(NAME)
