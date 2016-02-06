@@ -1,8 +1,9 @@
 #include "fdf.h"
+#include <stdio.h>
 
-int 	ft_get_b(int a, int c)
+float 	ft_get_b(int a, int c)
 {
-	int b;
+	float b;
 
 	if (a < c)
 		b = c;
@@ -10,37 +11,32 @@ int 	ft_get_b(int a, int c)
 		b = a;
 	return (b);
 }
-void 	ft_draw_to_next(int i, int j, t_env map, int b)
+
+void 	ft_draw_to_next(int i, int j, t_env map, float b)
 {
 	int 	a;
 
 	a = 0;
 	while (a < SPACE/b)
 	{
-		if (a < map.map[i][j])
-			mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b + a, BEGIN + i * SPACE/b, 0xFFFFFF);
-		else 
-			mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b + a, BEGIN + i * SPACE/b, 0xFFFFFF);
+		mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b + a, BEGIN + i * SPACE/b, 0xFFFFFF);
 		a++;
 	}
 }
 
-void 	ft_draw_to_lower(int i, int j, t_env map, int b)
+void 	ft_draw_to_lower(int i, int j, t_env map, float b)
 {
 	int 	a;
 
 	a = 0;
 	while (a < SPACE/b)
 	{	
-		if (a < SPACE / b)
-			mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b, BEGIN + i * SPACE/b + a, 0xFFFFFF);
-		else
-			mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b, BEGIN + i * SPACE/b + a, 0xFFFFFF);
+		mlx_pixel_put(map.mlx, map.win, BEGIN + j * SPACE/b, BEGIN + i * SPACE/b + a, 0xFFFFFF);
 		a++;
 	}
 }
 
-void	ft_draw_map(t_env map, int b)
+void	ft_draw_map(t_env map, float b)
 {
 	int 	i;
 	int 	j;
