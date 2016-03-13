@@ -6,7 +6,7 @@
 #include <fcntl.h>
 #include <mlx.h>
 # define SPACE 1000
-# define BEGIN 50
+# define BEGIN 150
 
 typedef struct 	s_env
 {
