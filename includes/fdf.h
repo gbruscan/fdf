@@ -2,6 +2,7 @@
 # define FDF_H
 
 #include "get_next_line.h"
+#include <math.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <mlx.h>
