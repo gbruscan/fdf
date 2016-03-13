@@ -14,7 +14,7 @@ float 	ft_get_b(int a, int c)
 
 void	ft_utod(int i, int j, t_env map, float b)
 {
-	float 	a;
+/*	float 	a;
 
 	a = 0;
 	(void)j;
@@ -22,13 +22,14 @@ void	ft_utod(int i, int j, t_env map, float b)
 	{
 		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b - a, BEGIN_Y + i * SPACE/b + a, 0xFFFFFF);
 		a++;
-	}
+	}*/
+	(void)j;
+	mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b, BEGIN_Y + i * SPACE/b, 0xFFFFFF);
 }
-
 
 void	ft_ltor(int i, int j, t_env map, float b)
 {
-	float 	a;
+/*	float 	a;
 
 	a = 0;
 	(void)j;
@@ -37,6 +38,9 @@ void	ft_ltor(int i, int j, t_env map, float b)
 		mlx_pixel_put(map.mlx, map.win, BEGIN_X + i * SPACE/b + a, BEGIN_Y + i * SPACE/b + a, 0xFFFFFF);
 		a++;
 	}
+	*/
+	(void)j;
+	mlx_pixel_put(map.mlx, map.win, BEGIN_X + i * SPACE/b, BEGIN_Y + i * SPACE/b, 0xFFFFFF);
 }
 
 void	ft_draw_map(t_env map, float b)
@@ -46,6 +50,7 @@ void	ft_draw_map(t_env map, float b)
 
 	i = 0;
 	j = 0;
+
 	while (i < map.x)
 	{
 		if (i < map.y)
