@@ -6,8 +6,9 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <mlx.h>
-# define SPACE 1000
-# define BEGIN 150
+# define SPACE 500
+# define BEGIN_X 450
+# define BEGIN_Y 100
 
 typedef struct 	s_env
 {
