@@ -40,7 +40,7 @@ void	ft_oneone(t_env map, float b, int i)
 			mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b + c * SPACE/b + a, BEGIN_Y + i * SPACE/b + c * SPACE/b + a, 0xFFFFFF);
 			a += 0.01;
 		}
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b + c * SPACE/b, BEGIN_Y + i * SPACE/b + c * SPACE/b - 3 * map.map[i][j], 0xFFFFFF);
+		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b + c * SPACE/b, BEGIN_Y + i * SPACE/b + c * SPACE/b, 0xFFFFFF);
 		ft_twotwo(map, b, i, c);
 		c++;
 		j++;
@@ -59,7 +59,7 @@ void	ft_draw_map(t_env map, float b)
 	a = 0;
 	while (i < map.y)
 	{
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b, BEGIN_Y + i * SPACE/b - 3 * map.map[i][j], 0xFFFFFF);
+		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b, BEGIN_Y + i * SPACE/b, 0xFFFFFF);
 		ft_oneone(map, b, i);
 		i++;
 		a = 0;
