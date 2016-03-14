@@ -14,13 +14,21 @@ float 	ft_get_b(int a, int c)
 
 void	ft_oneone(t_env map, float b, int i)
 {
-	int 	c;
+	float 	c;
+	float 	a;
 
 	c = 0;
+	a = 0;
 	while (c < map.x)
 	{
+		while (a < SPACE/b)
+		{
+			mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b + c * SPACE/b + a, BEGIN_Y + i * SPACE/b + c * SPACE/b + a, 0xFFFFFF);
+			a += 0.01;
+		}
 		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b + c * SPACE/b, BEGIN_Y + i * SPACE/b + c * SPACE/b, 0xFFFFFF);
 		c++;
+		a = 0;
 	}
 }
 
