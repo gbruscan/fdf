@@ -14,15 +14,7 @@ float 	ft_get_b(t_env map)
 	return (b);
 }
 
-float 	ft_get_X(int j, int i)
-{
-	float 	f;
-
-	f = 0.8 * j - 0.6 * i;
-	return (f);
-}
-
-float 	ft_get_Y(int j, int i, int z)
+float 	ft_get_Y(int j, int i, float z)
 {
 	float 	f;
 
@@ -30,30 +22,32 @@ float 	ft_get_Y(int j, int i, int z)
 	return (f);
 }
 
-void 	ft_pixel_next(t_env map)
+void 	ft_draw_line(t_env map, int j, int i)
 {
+	float 	a;
+	int 	y1;
+	int 	y2;
 
-
+	a = j;
+	while (a <= SPACE)
+	{
+		y1 = ft_get_Y(j , i, map.map[i][j]);
+		y2 = ft_get_Y(j + 1, i , map.map[i][j + 1]);
+		mlx_pixel_put(map.mlx, map.win, BEGIN_X + a, BEGIN_Y + y1 + ((y2 - y1) * (a - j) / (map.x - j)), 0xFFFFFF);
+		a += 0.01;
+	}
 }
 
 void	ft_draw_map(t_env map)
 {
 	int 	i;
 	int 	j;
-	float 	X;
-	float 	Y;
 
 	i = 0;
-	j = 0;
-	while (j < map.x)
-	{
-		X = ft_get_X(j, i);
-		Y = ft_get_Y(j, i, map.map[i][j]);		
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X + X + j * SPACE/map.b, BEGIN_Y + Y + j * SPACE/map.b, 0xFFFFFF);
-		ft_pixel_next(map, )
-		j++;
-	}
-	printf("j = %d\n", j);
+	j = 0;		
+	mlx_pixel_put(map.mlx, map.win, BEGIN_X, BEGIN_Y, 0xFFFFFF);
+	ft_draw_line(map, j, i);
+	j++;
 }
 
 int 	ft_key_funct(int keycode, void *param)
