@@ -1,69 +1,59 @@
 #include "fdf.h"
 #include <stdio.h>
 
-float 	ft_get_b(int a, int c)
+float 	ft_get_b(t_env map)
 {
 	float b;
 
-	if (a < c)
-		b = c;
+	if (map.x < map.y)
+		b = map.y;
 	else
-		b = a;
+		b = map.x;
+	map.a = 0;
+	map.c = 0;
 	return (b);
 }
 
-void 	ft_twotwo(t_env map, float b, int i, float c)
+float 	ft_get_X(int j, int i)
 {
-	float	a;
+	float 	f;
 
-	a = 0;
-	while (a < SPACE/b && i + 1 < map.y)
-	{
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b + c * SPACE/b - a, BEGIN_Y + i * SPACE/b + c * SPACE/b + a, 0xFFFFFF);
-		a += 0.01;
-	}
+	f = 0.8 * j - 0.6 * i;
+	return (f);
 }
 
-void	ft_oneone(t_env map, float b, int i)
+float 	ft_get_Y(int j, int i, int z)
 {
-	float 	c;
-	float 	a;
-	int 	j;
+	float 	f;
 
-	c = 0;
-	a = 0;
-	j = 0;
-	while (c < map.x)
-	{
-		while (a < SPACE/b && c + 1 < map.x)
-		{
-			mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b + c * SPACE/b + a, BEGIN_Y + i * SPACE/b + c * SPACE/b + a, 0xFFFFFF);
-			a += 0.01;
-		}
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b + c * SPACE/b, BEGIN_Y + i * SPACE/b + c * SPACE/b, 0xFFFFFF);
-		ft_twotwo(map, b, i, c);
-		c++;
-		j++;
-		a = 0;
-	}
+	f = z + 0.4 * j + 0.3 * i;
+	return (f);
 }
 
-void	ft_draw_map(t_env map, float b)
+void 	ft_pixel_next(t_env map)
+{
+
+
+}
+
+void	ft_draw_map(t_env map)
 {
 	int 	i;
 	int 	j;
-	float 	a;
+	float 	X;
+	float 	Y;
 
 	i = 0;
 	j = 0;
-	a = 0;
-	while (i < map.y)
+	while (j < map.x)
 	{
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X - i * SPACE/b, BEGIN_Y + i * SPACE/b, 0xFFFFFF);
-		ft_oneone(map, b, i);
-		i++;
-		a = 0;
+		X = ft_get_X(j, i);
+		Y = ft_get_Y(j, i, map.map[i][j]);		
+		mlx_pixel_put(map.mlx, map.win, BEGIN_X + X + j * SPACE/map.b, BEGIN_Y + Y + j * SPACE/map.b, 0xFFFFFF);
+		ft_pixel_next(map, )
+		j++;
 	}
+	printf("j = %d\n", j);
 }
 
 int 	ft_key_funct(int keycode, void *param)
@@ -76,12 +66,11 @@ int 	ft_key_funct(int keycode, void *param)
 
 void	ft_window(t_env map)
 {
-	int 	b;
-
-	b = ft_get_b(map.x, map.y);
+//	map.b = ft_get_b(map.x, map.y);
+	map.b = ft_get_b(map);
 	map.mlx = mlx_init();
 	map.win = mlx_new_window(map.mlx, 1200, 1200, "fdf");
-	ft_draw_map(map, b);
+	ft_draw_map(map);
 	mlx_key_hook(map.win, *ft_key_funct, 0);
 	mlx_loop(map.mlx);
 }

@@ -17,6 +17,9 @@ typedef struct 	s_env
 	int 		**map;
 	void 		*mlx;
 	void 		*win;
+	float 		b;
+	float 		a;
+	float 		c;
 }				t_env;
 
 int 	ft_error(void);
