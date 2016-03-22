@@ -75,7 +75,7 @@ void	ft_window(t_env map)
 	map.b = ft_get_b(map);
 	map.mlx = mlx_init();
 	map.win = mlx_new_window(map.mlx, 1200, 1200, "fdf");
-	ft_draw_map(map);
+	ft_draw_map(map, tab);
 	mlx_key_hook(map.win, *ft_key_funct, 0);
 	mlx_loop(map.mlx);
 }

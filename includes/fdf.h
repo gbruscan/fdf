@@ -36,7 +36,7 @@ int		ft_increase_j(char *line, int j);
 int 	ft_how_much_int(char *line);
 int		*ft_strdup_atoi(char *line, int *x);
 void	ft_window(t_env map);
-void	ft_draw_map(t_env map);
+void	ft_draw_map(t_env map, t_coord **tab);
 float 	ft_Y(float x, float y, int z);
 float 	ft_X(float x, float y);
 float 	ft_get_Y(t_env map, float a);

@@ -17,16 +17,21 @@ void 	ft_draw_line(t_env map, int j, int i)
 	}
 }
 
-void	ft_draw_map(t_env map)
+void	ft_draw_map(t_env map, t_coord **tab)
 {
 	int 	i;
 	int 	j;
-	float 	Y;
 
 	i = 0;
 	j = 0;
-	Y = ft_Y(j, i, map.map[i][j]);
-	mlx_pixel_put(map.mlx, map.win, BEGIN_X, BEGIN_Y + Y, 0xFFFFFF);
-	ft_draw_line(map, j, i);
-	i++;
+	while (i < map.y)
+	{
+		while (j < map.x)
+		{
+			mlx_pixel_put(map.mlx, map.win, BEGIN_X + tab[i][j].X * 10, BEGIN_Y + tab[i][j].Y * 10, 0xFFFFFF);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
 }
