@@ -11,11 +11,11 @@ float 	ft_get_b(t_env map)
 	return (b);
 }
 
-float 	ft_get_Y(t_env map, float a)
+float 	ft_get_X(t_env map, float a)
 {
 	float 	f;
 
-	f = (a / map.x) * map.y;
+	f = (a / map.y) * map.x;
 	return (f);
 }
 

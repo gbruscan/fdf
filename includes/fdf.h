@@ -39,7 +39,7 @@ void	ft_window(t_env map);
 void	ft_draw_map(t_env map, t_coord **tab);
 float 	ft_Y(float x, float y, int z);
 float 	ft_X(float x, float y);
-float 	ft_get_Y(t_env map, float a);
+float 	ft_get_X(t_env map, float a);
 t_env 	ft_fill_map(int fd, int m);
 
 #endif
