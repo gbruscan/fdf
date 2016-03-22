@@ -24,14 +24,14 @@ float 	ft_X(float x, float y)
 	float 	X;
 
 	X = (0.9 * x) - (0.8 * y);
-	return (X);
+	return (-X);
 }
 
 float 	ft_Y(float x, float y, int z)
 {
 	float 	Y;
 
-	Y = z + (0.45 * x) + (0.4 * y);
+	Y = (-z / 5) + (0.45 * x) + (0.4 * y);
 	return (Y);
 }
 

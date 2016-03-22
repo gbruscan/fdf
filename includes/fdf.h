@@ -8,7 +8,7 @@
 #include <mlx.h>
 # define SPACE 500
 # define BEGIN_X 550
-# define BEGIN_Y 100
+# define BEGIN_Y 500
 
 typedef struct 	s_env
 {

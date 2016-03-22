@@ -28,7 +28,7 @@ void	ft_draw_map(t_env map, t_coord **tab)
 	{
 		while (j < map.x)
 		{
-			mlx_pixel_put(map.mlx, map.win, BEGIN_X + tab[i][j].X * 10, BEGIN_Y + tab[i][j].Y * 10, 0xFFFFFF);
+			mlx_pixel_put(map.mlx, map.win, BEGIN_X + tab[i][j].X * 20, BEGIN_Y + tab[i][j].Y * 20, 0xFFFFFF);
 			j++;
 		}
 		j = 0;
