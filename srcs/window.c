@@ -1,5 +1,4 @@
 #include "fdf.h"
-#include <stdio.h>
 
 float 	ft_get_b(t_env map)
 {
@@ -9,45 +8,31 @@ float 	ft_get_b(t_env map)
 		b = map.y;
 	else
 		b = map.x;
-	map.a = 0;
-	map.c = 0;
 	return (b);
 }
 
-float 	ft_get_Y(int j, int i, float z)
+float 	ft_get_Y(t_env map, float a)
 {
 	float 	f;
 
-	f = z + 0.4 * j + 0.3 * i;
+	f = (a / map.x) * map.y;
 	return (f);
 }
 
-void 	ft_draw_line(t_env map, int j, int i)
+float 	ft_X(float x, float y)
 {
-	float 	a;
-	int 	y1;
-	int 	y2;
+	float 	X;
 
-	a = j;
-	while (a <= SPACE)
-	{
-		y1 = ft_get_Y(j , i, map.map[i][j]);
-		y2 = ft_get_Y(j + 1, i , map.map[i][j + 1]);
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X + a, BEGIN_Y + y1 + ((y2 - y1) * (a - j) / (map.x - j)), 0xFFFFFF);
-		a += 0.01;
-	}
+	X = (0.9 * x) - (0.8 * y);
+	return (X);
 }
 
-void	ft_draw_map(t_env map)
+float 	ft_Y(float x, float y, int z)
 {
-	int 	i;
-	int 	j;
+	float 	Y;
 
-	i = 0;
-	j = 0;		
-	mlx_pixel_put(map.mlx, map.win, BEGIN_X, BEGIN_Y, 0xFFFFFF);
-	ft_draw_line(map, j, i);
-	j++;
+	Y = z + (0.45 * x) + (0.4 * y);
+	return (Y);
 }
 
 int 	ft_key_funct(int keycode, void *param)
@@ -58,9 +43,35 @@ int 	ft_key_funct(int keycode, void *param)
 	return (0);
 }
 
+t_coord	*ft_fill_tab(t_coord *tab, t_env map, int i)
+{
+	int 		j;
+
+	j = 0;
+	tab = (t_coord *)malloc(sizeof(t_coord) * map.x);
+	if (!tab)
+		return (NULL);
+	while (j < map.x)
+	{
+		tab[j].X = ft_X(i, j);
+		tab[j].Y = ft_Y(i, j, map.map[i][j]);
+		j++;
+	}
+	return (tab);
+}
+
 void	ft_window(t_env map)
 {
-//	map.b = ft_get_b(map.x, map.y);
+	t_coord		**tab;
+	int 		i;
+
+	i = 0;
+	tab = (t_coord **)malloc(sizeof(t_coord *) * map.y);
+	while (i < map.y)
+	{
+		tab[i] = ft_fill_tab(tab[i], map, i);
+		i++;
+	}
 	map.b = ft_get_b(map);
 	map.mlx = mlx_init();
 	map.win = mlx_new_window(map.mlx, 1200, 1200, "fdf");
