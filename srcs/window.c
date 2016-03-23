@@ -19,11 +19,17 @@ float 	ft_get_X(t_env map, float a)
 	return (f);
 }
 
+float 	ft_abs(float a)
+{
+	if (a < 0)
+		return (-a);
+	return (a);
+}
 float 	ft_X(float x, float y)
 {
 	float 	X;
 
-	X = (2.4 * x) - (1.4 * y);
+	X = (1.6 * x) - (1.4 * y);
 	return (-X);
 }
 
@@ -31,7 +37,7 @@ float 	ft_Y(float x, float y, int z)
 {
 	float 	Y;
 
-	Y = (-z / 4) + (1.2 * x) + (0.7 * y);
+	Y = (z / 8) + (0.8 * x) + (0.7 * y);
 	return (Y);
 }
 
