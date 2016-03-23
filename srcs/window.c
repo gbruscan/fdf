@@ -23,7 +23,7 @@ float 	ft_X(float x, float y)
 {
 	float 	X;
 
-	X = (0.9 * x) - (0.8 * y);
+	X = (2.4 * x) - (1.4 * y);
 	return (-X);
 }
 
@@ -31,7 +31,7 @@ float 	ft_Y(float x, float y, int z)
 {
 	float 	Y;
 
-	Y = (-z / 5) + (0.45 * x) + (0.4 * y);
+	Y = (-z / 4) + (1.2 * x) + (0.7 * y);
 	return (Y);
 }
 
