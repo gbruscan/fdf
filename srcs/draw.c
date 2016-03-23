@@ -33,7 +33,15 @@ void 	ft_draw_to_D(t_env map, t_coord **tab, int j, int i)
 	y1 = tab[i][j].Y;
 	y2 = tab[i + 1][j].Y;
 	a = y1;
-	while (a < y2)
+	if (a > y2)
+	{
+		while (a > y2)
+		{
+			mlx_pixel_put(map.mlx, map.win, BEGIN_X + (x1 + ((x2 - x1) * (a - y1)) / (y2 - y1)) * 20, BEGIN_Y + a * 20, 0xFFFFFF);
+			a -= 0.01;
+		}
+	}
+	while (a <= y2)
 	{
 		mlx_pixel_put(map.mlx, map.win, BEGIN_X + (x1 + ((x2 - x1) * (a - y1)) / (y2 - y1)) * 20, BEGIN_Y + a * 20, 0xFFFFFF);
 		a += 0.01;

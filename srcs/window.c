@@ -37,7 +37,7 @@ float 	ft_Y(float x, float y, int z)
 {
 	float 	Y;
 
-	Y = (z / 8) + (0.8 * x) + (0.7 * y);
+	Y = (-z / 4) + (0.8 * x) + (0.7 * y);
 	return (Y);
 }
 
