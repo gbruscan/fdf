@@ -23,9 +23,12 @@ typedef struct 	s_env
 	int 		LR;
 	int 		UD;
 	int 		redraw;
+	int 		alt;
 	void 		*mlx;
 	void 		*win;
 	float 		zoom;
+	float 		cte1;
+	float 		cte2;
 	t_coord		**tab;
 }				t_env;
 
@@ -42,8 +45,8 @@ int 	ft_key_funct(int keycode, t_env *map);
 int		ft_expose_hook(t_env *map);
 void	ft_window(t_env map);
 void	ft_draw_map(t_env map);
-float 	ft_Y(float x, float y, int z);
-float 	ft_X(float x, float y);
+float 	ft_Y(t_env map, float x, float y, int z);
+float 	ft_X(t_env map, float x, float y);
 t_env 	ft_fill_map(int fd, int m);
 
 #endif
