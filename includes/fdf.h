@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <mlx.h>
-# define BEGIN_X 550
+# define BEGIN_X 500
 # define BEGIN_Y 400
 
 typedef struct 	s_coord
@@ -27,6 +27,7 @@ typedef struct 	s_env
 	void 		*mlx;
 	void 		*win;
 	float 		zoom;
+	float 		zoom_save;
 	float 		cte1;
 	float 		cte2;
 	t_coord		**tab;

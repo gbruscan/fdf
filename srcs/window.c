@@ -2,13 +2,19 @@
 
 t_env 	ft_init_hooks(t_env map)
 {
-	map.zoom = 10;
 	map.LR = 0;
 	map.UD = 0;
 	map.redraw = 1;
 	map.cte1 = 1.6;
 	map.cte2 = 0.8;
 	map.alt = 4;
+	if (map.x * map.y <= 500)
+		map.zoom = 20;
+	else if (map.x * map.y > 500 && map.x * map.y <= 2000)
+		map.zoom = 10;
+	else
+		map.zoom = 2.4;
+	map.zoom_save = map.zoom;
 	return (map);
 }
 

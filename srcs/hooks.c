@@ -34,7 +34,7 @@ int 	ft_key_funct(int keycode, t_env *map)
 	else if (keycode == 69)
 		map->zoom += 1;
 	else if (keycode == 82)
-		map->zoom = 10;
+		map->zoom = map->zoom_save;
 	map->redraw = 1;
 	return (0);
 }
