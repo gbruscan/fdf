@@ -23,6 +23,10 @@ int 	ft_key_funct(int keycode, t_env *map)
 		map->UD += 10;
 	else if (keycode == 126)
 		map->UD -= 10;
+	else if (keycode == 78)
+		map->zoom -= 1;
+	else if (keycode == 69)
+		map->zoom += 1;
 	map->redraw = 1;
 	return (0);
 }
