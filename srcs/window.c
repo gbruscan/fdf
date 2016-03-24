@@ -1,30 +1,14 @@
 #include "fdf.h"
 
-float 	ft_get_b(t_env map)
+t_env 	ft_init_hooks(t_env map)
 {
-	float b;
-
-	if (map.x < map.y)
-		b = map.y;
-	else
-		b = map.x;
-	return (b);
+	map.zoom = 20;
+	map.LR = 0;
+	map.UD = 0;
+	map.redraw = 1;
+	return (map);
 }
 
-float 	ft_get_X(t_env map, float a)
-{
-	float 	f;
-
-	f = (a / map.y) * map.x;
-	return (f);
-}
-
-float 	ft_abs(float a)
-{
-	if (a < 0)
-		return (-a);
-	return (a);
-}
 float 	ft_X(float x, float y)
 {
 	float 	X;
@@ -39,14 +23,6 @@ float 	ft_Y(float x, float y, int z)
 
 	Y = (-z / 4) + (0.8 * x) + (0.7 * y);
 	return (Y);
-}
-
-int 	ft_key_funct(int keycode, void *param)
-{
-	param = NULL;
-	if (keycode == 53)
-		exit(0);
-	return (0);
 }
 
 t_coord	*ft_fill_tab(t_coord *tab, t_env map, int i)
@@ -68,20 +44,19 @@ t_coord	*ft_fill_tab(t_coord *tab, t_env map, int i)
 
 void	ft_window(t_env map)
 {
-	t_coord		**tab;
 	int 		i;
 
 	i = 0;
-	tab = (t_coord **)malloc(sizeof(t_coord *) * map.y);
+	map.tab = (t_coord **)malloc(sizeof(t_coord *) * map.y);
 	while (i < map.y)
 	{
-		tab[i] = ft_fill_tab(tab[i], map, i);
+		map.tab[i] = ft_fill_tab(map.tab[i], map, i);
 		i++;
 	}
-	map.b = ft_get_b(map);
+	map = ft_init_hooks(map);
 	map.mlx = mlx_init();
 	map.win = mlx_new_window(map.mlx, 1200, 1200, "fdf");
-	ft_draw_map(map, tab);
-	mlx_key_hook(map.win, *ft_key_funct, 0);
+	mlx_loop_hook(map.mlx, ft_expose_hook, &map);
+	mlx_key_hook(map.win, *ft_key_funct, &map);
 	mlx_loop(map.mlx);
 }

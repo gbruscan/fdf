@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-void 	ft_draw_to_R(t_env map, t_coord **tab, int j, int i)
+void 	ft_draw_to_R(t_env map, int j, int i)
 {
 	float 	a;
 	float 	x1;
@@ -8,19 +8,19 @@ void 	ft_draw_to_R(t_env map, t_coord **tab, int j, int i)
 	float 	y1;
 	float 	y2;
 
-	x1 = tab[i][j].X;
-	x2 = tab[i][j + 1].X;
-	y1 = tab[i][j].Y;
-	y2 = tab[i][j + 1].Y;
+	x1 = map.tab[i][j].X;
+	x2 = map.tab[i][j + 1].X;
+	y1 = map.tab[i][j].Y;
+	y2 = map.tab[i][j + 1].Y;
 	a = x1;
 	while (a <= x2)
 	{	
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X + a * 20, BEGIN_Y + (y1 + ((y2 - y1) * (a - x1)) / (x2 - x1)) * 20, 0xFFFFFF);
+		mlx_pixel_put(map.mlx, map.win, BEGIN_X + map.LR + a * map.zoom, BEGIN_Y + map.UD + (y1 + ((y2 - y1) * (a - x1)) / (x2 - x1)) * map.zoom, 0xFFFFFF);
 		a += 0.01;
 	}
 }
 
-void 	ft_draw_to_D(t_env map, t_coord **tab, int j, int i)
+void 	ft_draw_to_D(t_env map, int j, int i)
 {
 	float 	a;
 	float 	x1;
@@ -28,27 +28,27 @@ void 	ft_draw_to_D(t_env map, t_coord **tab, int j, int i)
 	float 	y1;
 	float 	y2;
 
-	x1 = tab[i][j].X;
-	x2 = tab[i + 1][j].X;
-	y1 = tab[i][j].Y;
-	y2 = tab[i + 1][j].Y;
+	x1 = map.tab[i][j].X;
+	x2 = map.tab[i + 1][j].X;
+	y1 = map.tab[i][j].Y;
+	y2 = map.tab[i + 1][j].Y;
 	a = y1;
 	if (a > y2)
 	{
 		while (a > y2)
 		{
-			mlx_pixel_put(map.mlx, map.win, BEGIN_X + (x1 + ((x2 - x1) * (a - y1)) / (y2 - y1)) * 20, BEGIN_Y + a * 20, 0xFFFFFF);
+			mlx_pixel_put(map.mlx, map.win, BEGIN_X  + map.LR + (x1 + ((x2 - x1) * (a - y1)) / (y2 - y1)) * map.zoom, BEGIN_Y + map.UD + a * map.zoom, 0xFFFFFF);
 			a -= 0.01;
 		}
 	}
 	while (a <= y2)
 	{
-		mlx_pixel_put(map.mlx, map.win, BEGIN_X + (x1 + ((x2 - x1) * (a - y1)) / (y2 - y1)) * 20, BEGIN_Y + a * 20, 0xFFFFFF);
+		mlx_pixel_put(map.mlx, map.win, BEGIN_X + map.LR + (x1 + ((x2 - x1) * (a - y1)) / (y2 - y1)) * map.zoom, BEGIN_Y + map.UD + a * map.zoom, 0xFFFFFF);
 		a += 0.01;
 	}
 }
 
-void	ft_draw_map(t_env map, t_coord **tab)
+void	ft_draw_map(t_env map)
 {
 	int 	i;
 	int 	j;
@@ -60,9 +60,9 @@ void	ft_draw_map(t_env map, t_coord **tab)
 		while (j < map.x)
 		{
 			if (i < map.y - 1)
-				ft_draw_to_D(map, tab, j, i);
-			mlx_pixel_put(map.mlx, map.win, BEGIN_X + tab[i][j].X * 20, BEGIN_Y + tab[i][j].Y * 20, 0xFFFFFF);
-			ft_draw_to_R(map, tab, j, i);
+				ft_draw_to_D(map, j, i);
+			mlx_pixel_put(map.mlx, map.win, BEGIN_X + map.LR + map.tab[i][j].X * map.zoom, BEGIN_Y + map.UD + map.tab[i][j].Y * map.zoom, 0xFFFFFF);
+			ft_draw_to_R(map, j, i);
 			j++;
 		}
 	j = 0;

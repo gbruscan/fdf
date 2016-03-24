@@ -9,21 +9,25 @@
 # define BEGIN_X 550
 # define BEGIN_Y 400
 
-typedef struct 	s_env
-{
-	int 		x;
-	int 		y;
-	int 		**map;
-	void 		*mlx;
-	void 		*win;
-	float 		b;
-}				t_env;
-
 typedef struct 	s_coord
 {
 	float 		X;
 	float 		Y;
 }				t_coord;
+
+typedef struct 	s_env
+{
+	int 		x;
+	int 		y;
+	int 		**map;
+	int 		LR;
+	int 		UD;
+	int 		redraw;
+	void 		*mlx;
+	void 		*win;
+	float 		zoom;
+	t_coord		**tab;
+}				t_env;
 
 int 	ft_error(void);
 int		ft_check_line(char *line);
@@ -34,11 +38,12 @@ int		ft_map(int fd);
 int		ft_increase_j(char *line, int j);
 int 	ft_how_much_int(char *line);
 int		*ft_strdup_atoi(char *line, int *x);
+int 	ft_key_funct(int keycode, t_env *map);
+int		ft_expose_hook(t_env *map);
 void	ft_window(t_env map);
-void	ft_draw_map(t_env map, t_coord **tab);
+void	ft_draw_map(t_env map);
 float 	ft_Y(float x, float y, int z);
 float 	ft_X(float x, float y);
-float 	ft_get_X(t_env map, float a);
 t_env 	ft_fill_map(int fd, int m);
 
 #endif

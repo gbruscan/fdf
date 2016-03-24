@@ -20,7 +20,8 @@ SRCS =		srcs/main.c \
 		srcs/color_check.c \
 		srcs/window.c \
 		srcs/map.c \
-		srcs/draw.c 
+		srcs/draw.c \
+		srcs/hooks.c
 
 CFLAGS =	-Wall -Wextra -Werror -g
 CFLAGS +=	-I./includes -I/usr/X11/include
