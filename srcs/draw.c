@@ -62,7 +62,8 @@ void	ft_draw_map(t_env map)
 			if (i < map.y - 1)
 				ft_draw_to_D(map, j, i);
 			mlx_pixel_put(map.mlx, map.win, BEGIN_X + map.LR + map.tab[i][j].X * map.zoom, BEGIN_Y + map.UD + map.tab[i][j].Y * map.zoom, 0xFFFFFF);
-			ft_draw_to_R(map, j, i);
+			if (j < map.x - 1)
+				ft_draw_to_R(map, j, i);
 			j++;
 		}
 	j = 0;
