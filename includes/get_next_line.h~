@@ -17,12 +17,8 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define BUFF_SIZE 1200
+# define BUFF_SIZE 10
 
-int		ft_create_buff(char *buff, int j);
-int		ft_get_new_line(char *buff, char **line, int j);
-int		ft_buff_cpy(char *buff, char **line);
-int		ft_line_status(char *buff, char **line);
 int		get_next_line(int const fd, char **line);
 
 #endif

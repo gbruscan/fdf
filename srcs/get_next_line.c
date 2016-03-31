@@ -6,7 +6,7 @@
 /*   By: gbruscan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 11:16:10 by gbruscan          #+#    #+#             */
-/*   Updated: 2016/01/12 14:04:39 by gbruscan         ###   ########.fr       */
+/*   Updated: 2016/03/31 14:37:30 by gbruscan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,57 +24,43 @@ int		ft_create_buff(char *buff, int j)
 	ft_strcpy(tmp, (const char *)(buff + j + 1));
 	ft_bzero(buff, size);
 	ft_strcpy(buff, tmp);
-	if (tmp)
-		free(tmp);
 	return (1);
 }
 
-int		ft_get_new_line(char *buff, char **line, int j)
+int		ft_retzero(char *line)
 {
+	char	*copy;
+
+	if (line[0] == 0)
+		return (0);
+	copy = ft_strdup(line);
+	copy[ft_strlen(copy)] = '\n';
+	return (ft_create_buff(copy, 0));
+}
+
+int		ft_buff(char *buff, char **line)
+{
+	int		j;
 	char	*s1;
 	char	*s2;
 
+	j = 0;
 	s1 = *line;
+	while (buff[j] != '\n' && buff[j] != 0)
+		j++;
 	s2 = (char *)malloc(sizeof(char) * (j + ft_strlen(s1) + 1));
 	if (s2 == NULL)
 		return (-1);
 	ft_strcpy(s2, s1);
 	ft_strncat(s2, buff, j);
 	*line = s2;
-	if (s1)
-		free(s1);
-	return (ft_create_buff(buff, j));
-}
-
-int		ft_buff_cpy(char *buff, char **line)
-{
-	char	*s1;
-	char	*s2;
-
-	s1 = *line;
-	s2 = (char *)malloc(sizeof(char) * (ft_strlen(buff) + ft_strlen(s1) + 1));
-	if (s2 == NULL)
-		return (-1);
-	ft_strcpy(s2, s1);
-	ft_strcat(s2, buff);
-	*line = s2;
-	if (s1)
-		free(s1);
-	ft_bzero(buff, ft_strlen(buff));
-	return (2);
-}
-
-int		ft_line_status(char *buff, char **line)
-{
-	int		j;
-
-	j = 0;
-	while (buff[j] != '\n' && buff[j] != 0)
-		j++;
-	if (buff[j] == 0)
-		return (ft_buff_cpy(buff, line));
+	if (buff[j] == '\n')
+		return (ft_create_buff(buff, j));
 	else
-		return (ft_get_new_line(buff, line, j));
+	{
+		ft_bzero(buff, ft_strlen(buff));
+		return (2);
+	}
 }
 
 int		get_next_line(int const fd, char **line)
@@ -95,12 +81,10 @@ int		get_next_line(int const fd, char **line)
 				return (-1);
 			if (ret > 0)
 				buff[ret] = 0;
-			if (ret == 0 && buff[0] != 0)
-				return (ft_get_new_line(buff, line, 0));
 			if (ret == 0)
-				return (0);
+				return (ft_retzero(*line));
 		}
-		gnl = ft_line_status(buff, line);
+		gnl = ft_buff(buff, line);
 	}
 	return (gnl);
 }
